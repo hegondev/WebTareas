@@ -19,6 +19,32 @@
     </header>
 
     <main/>
+    
+    <div class="tarea-card">
+        <span class="tarea-prioridad">Prioridad</span>
+        <p class="tarea-texto">Texto largo descriptivo de la tarea con muchas palabras y espacio y más palabras. <br/><br/> Texto largo descriptivo de la tarea con muchas palabras y espacio y más palabras.</p>
+        <span class="tarea-fecha-crea">&#128198; fecha</span>
+    </div>
+
+    <div class="tarea-card">
+        <select class="tarea-prioridades">
+            <option value="opcion1" style="background-color: greenyellow;" selected>Prioridad 1</option>
+            <option value="opcion2" style="background-color: red;">Prioridad 2</option>
+            <option value="opcion3" style="background-color: blue;">Prioridad 3</option>
+        </select>
+        <p>
+            <textarea class="tarea-input-texto" placeholder="Texto de la tarea..."></textarea>
+        </p>
+        <div class="tarea-inferior">
+            <input type="date" class="tarea-input-fecha"/>
+            <div class="tarea-botones">
+                <button class="tarea-btn-guardar">❌</button>
+                <button class="tarea-btn-eliminar">✔️</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="btn-nueva-tarea"><span>➕</span></div>
 
 </body>
 </html>

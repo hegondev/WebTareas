@@ -19,3 +19,95 @@ header {
     font-weight: 700;
     font-size: larger;
 }
+
+.tarea-card {
+    background-color: #E5E5E5;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 20px ;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.tarea-prioridad {
+    background-color: greenyellow;
+    border-radius: 10px;
+    padding: 2px 10px;
+    width: fit-content;
+    font-size: small;
+}
+
+.tarea-prioridades {
+    border-radius: 10px;
+    padding: 2px 10px;
+    width: fit-content;
+    font-size: small;
+    color: gray;
+    border-style: hidden;
+}
+
+.tarea-fecha-crea {
+    font-size: small;
+    color: gray;
+}
+
+.tarea-texto {
+    font-weight: 500;
+}
+
+.tarea-input-texto {
+    width: 100%;
+    overflow: hidden;
+    resize: none;
+    min-height: 70px;
+    width: 95%;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+.tarea-input-fecha {
+    font-size: small;
+    width: 110px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: "Quicksand", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+}
+
+.tarea-inferior {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+}
+
+.tarea-botones {
+    display: flex;
+    gap: 5px;
+}
+
+.tarea-botones button {
+    font-size: medium;
+    border: none;
+    background-color: transparent;
+}
+
+.btn-nueva-tarea {
+    background-color: #E5E5E5;
+    border-radius: 10px;
+    padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 150px ;
+    border: 1px solid #ccc;
+}
+
+.btn-nueva-tarea span {
+    font-size: large;
+}
