@@ -20,7 +20,7 @@ header {
     font-size: larger;
 }
 
-.tarea-card {
+.tarea-card, .tarea-card-crear {
     background-color: #E5E5E5;
     border-radius: 10px;
     padding: 10px;

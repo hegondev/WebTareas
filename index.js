@@ -1,12 +1,23 @@
 document.addEventListener("DOMContentLoaded", function() {
     const mainElement = document.querySelector('main');
+    const tareaCardCrear = document.querySelector('.tarea-card-crear');
+    const btnNuevaTarea = document.querySelector('.btn-nueva-tarea');
+    const btnCancelar = document.querySelector('.tarea-btn-cancelar');
 
-    const newSection = document.createElement('section');
-    newSection.innerHTML = `
-        <h2>Bienvenido</h2>
-        <p>Comienza a editar <code>index.html</code> y agrega tu contenido aquí.</p>
-    `;
+    btnNuevaTarea.addEventListener('click', function() {
+        tareaCardCrear.style.display = 'flex';
+        btnNuevaTarea.style.display = 'none';
+    })
 
-    mainElement.appendChild(newSection);
-    
+    btnCancelar.addEventListener('click', function() {
+        tareaCardCrear.style.display = 'none';
+        btnNuevaTarea.style.display = 'flex';
+
+        tareaCardCrear.querySelector('.tarea-input-fecha').value = '';
+        tareaCardCrear.querySelector('.tarea-prioridades').selectedIndex = 0;
+        tareaCardCrear.querySelector('.tarea-input-texto').value = '';
+    })
+
+    tareaCardCrear.style.display = 'none';
+
 });
