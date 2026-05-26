@@ -1,15 +1,52 @@
+const listaPrioridades = [
+    { valor: 1, texto: "Baja" },
+    { valor: 2, texto: "Media" },
+    { valor: 3, texto: "Alta" }
+];
+
 document.addEventListener("DOMContentLoaded", function() {
     const mainElement = document.querySelector('main');
     const tareaCardCrear = document.querySelector('.tarea-card-crear');
     const btnNuevaTarea = document.querySelector('.btn-nueva-tarea');
     const btnCancelar = document.querySelector('.tarea-btn-cancelar');
     const desplegablePrioridades = tareaCardCrear.querySelector('.tarea-prioridades');
-    
+
+    //localStorage.removeItem("tareasGuardadas");
+
     /* Gestión lista de tareas en memoria local al iniciar la webapp */
     let listaTareasMemoria = localStorage.getItem("tareasGuardadas");
     if(listaTareasMemoria) {
         // Visualización de las tareas de la lista
+        const tareasGuardadas = JSON.parse(listaTareasMemoria);
+        tareasGuardadas.forEach(tarea => {
+            const tareaCard = document.createElement('div');
+            tareaCard.classList.add('tarea-card');
+            tareaCard.innerHTML = `
+                <span class="tarea-prioridad">Prioridad: ${listaPrioridades[tarea.prioridad].texto}</span>
+                <p class="tarea-texto">${tarea.texto}</p>
+                <span class="tarea-fecha-crea">&#128198; ${tarea.fecha}</span>
+            `;
+            mainElement.prepend(tareaCard);
+        });        
+    } else {
+        // Datos prueba
+        const tareaEjemplo1 = {
+            id: 1,
+            prioridad: 1,
+            texto: "Tarea de ejemplo 1",
+            fecha: "11-11-2025",
+        }
+
+        //localStorage.setItem("tareasGuardadas", JSON.stringify([tareaEjemplo1]));
         
+        const tareaEjemplo2 = {
+        id: 2,
+        prioridad: 2,
+        texto: "Tarea de ejemplo 2",
+        fecha: "11-12-2025",
+        }
+
+        localStorage.setItem("tareasGuardadas", JSON.stringify([tareaEjemplo1, tareaEjemplo2]));
     }
     /* Fin de gestión de lista de tareas en memoria local*/
 
@@ -49,7 +86,7 @@ document.addEventListener("DOMContentLoaded", function() {
     // Al iniciar:
     // No mostramos card de crear tarea
     tareaCardCrear.style.display = 'none';
-    // Prioridad inicial a 0
+    // Prioridad inicial a 0 en card de crear tarea
     desplegablePrioridades.selectedIndex = 0;
 
 });
