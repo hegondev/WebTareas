@@ -12,6 +12,7 @@ header {
     display: flex;
     justify-content: space-around;
     align-items: center;
+    margin-bottom: 15px;
 }
 
 .header-nombre {
@@ -70,19 +71,9 @@ header {
     padding: 5px;
 }
 
-.tarea-input-fecha {
-    font-size: small;
-    width: 130px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    font-family: "Quicksand", sans-serif;
-    font-optical-sizing: auto;
-    font-style: normal;
-}
-
 .tarea-inferior {
     display: flex;
-    justify-content: space-between;
+    justify-content: end;
     width: 100%;
 }
 
@@ -93,8 +84,19 @@ header {
 
 .tarea-botones button {
     font-size: medium;
-    border: none;
-    background-color: transparent;
+    border: 1px solid #ccc;
+    border-radius: 7px;
+    background-color: whitesmoke;
+    height: 27px;
+    width: 27px;
+}
+
+.tarea-btn-guardar {
+    color: green;
+}
+
+.tarea-btn-cancelar {
+    color: red;
 }
 
 .btn-nueva-tarea {

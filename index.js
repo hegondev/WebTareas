@@ -8,45 +8,27 @@ document.addEventListener("DOMContentLoaded", function() {
     const mainElement = document.querySelector('main');
     const tareaCardCrear = document.querySelector('.tarea-card-crear');
     const btnNuevaTarea = document.querySelector('.btn-nueva-tarea');
-    const btnCancelar = document.querySelector('.tarea-btn-cancelar');
+    const btnCancelarNuevaTarea = document.querySelector('.tarea-btn-cancelar');
+    const btnGuardarNuevaTarea = document.querySelector('.tarea-btn-guardar');
     const desplegablePrioridades = tareaCardCrear.querySelector('.tarea-prioridades');
+    const textoTareaCardCrear = tareaCardCrear.querySelector('.tarea-input-texto');
 
-    //localStorage.removeItem("tareasGuardadas");
-
-    /* Gestión lista de tareas en memoria local al iniciar la webapp */
     let listaTareasMemoria = localStorage.getItem("tareasGuardadas");
+    
+    /* Gestión lista de tareas en memoria local al iniciar la webapp */
     if(listaTareasMemoria) {
         // Visualización de las tareas de la lista
-        const tareasGuardadas = JSON.parse(listaTareasMemoria);
-        tareasGuardadas.forEach(tarea => {
+        const listaTareasJson = JSON.parse(listaTareasMemoria)
+        listaTareasJson.forEach(tarea => {
             const tareaCard = document.createElement('div');
             tareaCard.classList.add('tarea-card');
             tareaCard.innerHTML = `
                 <span class="tarea-prioridad">Prioridad: ${listaPrioridades[tarea.prioridad].texto}</span>
                 <p class="tarea-texto">${tarea.texto}</p>
-                <span class="tarea-fecha-crea">&#128198; ${tarea.fecha}</span>
+                <span class="tarea-fecha-crea">${tarea.fecha}</span>
             `;
             mainElement.prepend(tareaCard);
         });        
-    } else {
-        // Datos prueba
-        const tareaEjemplo1 = {
-            id: 1,
-            prioridad: 1,
-            texto: "Tarea de ejemplo 1",
-            fecha: "11-11-2025",
-        }
-
-        //localStorage.setItem("tareasGuardadas", JSON.stringify([tareaEjemplo1]));
-        
-        const tareaEjemplo2 = {
-        id: 2,
-        prioridad: 2,
-        texto: "Tarea de ejemplo 2",
-        fecha: "11-12-2025",
-        }
-
-        localStorage.setItem("tareasGuardadas", JSON.stringify([tareaEjemplo1, tareaEjemplo2]));
     }
     /* Fin de gestión de lista de tareas en memoria local*/
 
@@ -56,16 +38,38 @@ document.addEventListener("DOMContentLoaded", function() {
         btnNuevaTarea.style.display = 'none';
     })
 
-    btnCancelar.addEventListener('click', function() {
+    btnCancelarNuevaTarea.addEventListener('click', function() {
         // Mostrar botón añadir tarea y ocultar card para crear tarea
         tareaCardCrear.style.display = 'none';
         btnNuevaTarea.style.display = 'flex';
 
         // Restaurar parámetros a valores iniciales
-        tareaCardCrear.querySelector('.tarea-input-fecha').value = '';
         tareaCardCrear.querySelector('.tarea-input-texto').value = '';
         desplegablePrioridades.selectedIndex = 0;
         desplegablePrioridades.style.backgroundColor = 'transparent';
+    })
+
+    btnGuardarNuevaTarea.addEventListener('click', function() {
+        // Comprobamos que los campos de input estén rellenos
+        if(desplegablePrioridades.selectedIndex != 0 
+            && tareaCardCrear.querySelector('.tarea-input-texto').value != '') {
+                // Creamos objeto con los datos de la nueva tarea
+                let nuevaTarea = {
+                    id: listaTareasMemoria == null ? 1 : listaTareasMemoria.length + 1,
+                    prioridad: desplegablePrioridades.selectedIndex,
+                    texto: textoTareaCardCrear.value,
+                    fecha: new Date().toLocaleDateString()
+                }
+                
+                // Si ya hay lista de tareas, añadimos. Si no, creamos lista con nueva tarea
+                if(listaTareasMemoria != null)
+                    listaTareasMemoria.add(nuevaTarea);
+                else
+                    listaTareasMemoria = [nuevaTarea];
+
+                localStorage.setItem("tareasGuardadas", JSON.stringify(listaTareasMemoria));
+
+        }
     })
 
     desplegablePrioridades.addEventListener('change', function() {
